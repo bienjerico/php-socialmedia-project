@@ -9,9 +9,9 @@ if(empty($_SESSION['logged_in']) || $_SESSION['logged_in']==0){
 
 include 'config/db.php';
 
-$username = $_SESSION['username'];
+$emailaddress = $_SESSION['emailaddress'];
 
-$query  = "SELECT * FROM users WHERE username='$username'";
+$query  = "SELECT * FROM users WHERE emailaddress='$emailaddress'";
 $result = mysqli_query($db,$query);
 $row 	= mysqli_fetch_assoc($result);
 
@@ -26,21 +26,12 @@ $row 	= mysqli_fetch_assoc($result);
 <a href="home.php">HOME</a>
 <a href="profile.php">PROFILE</a>
 
-<h2>Hello <?php echo $row['username']; ?>,</h2>
+<h2>Hello <?php echo $row['name']; ?>,</h2>
 
 
 
-<label>Username : </label>
-<?php echo $row['username'] ?>
-<br/>
-<label>Firstname : </label>
-<?php echo  $row['firstname'] ?>
-<br/>
-<label>Middlename : </label>
-<?php echo $row['middlename'] ?>
-<br/>
-<label>Lastname : </label>
-<?php echo  $row['lastname'] ?>
+<label>Name : </label>
+<?php echo $row['name'] ?>
 <br/>
 <label>Gender : </label>
 <?php echo  $row['gender'] ?>

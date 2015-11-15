@@ -9,9 +9,9 @@ if(empty($_SESSION['logged_in']) || $_SESSION['logged_in']==0){
 
 include 'config/db.php';
 
-$username = $_SESSION['username'];
+$emailaddress = $_SESSION['emailaddress'];
 
-$query  = "SELECT * FROM users WHERE username='$username'";
+$query  = "SELECT * FROM users WHERE emailaddress='$emailaddress'";
 $result = mysqli_query($db,$query);
 $row 	= mysqli_fetch_assoc($result);
 
@@ -20,32 +20,28 @@ if(isset($_POST['submit-btn'])){
 	
 
 
-	$firstname = $_POST['firstname'];
-	$middlename = $_POST['middlename'];
-	$lastname = $_POST['lastname'];
+	$name = $_POST['name'];
 	$gender = $_POST['gender'];
 	$birthday = $_POST['birthday'];
 	$age = $_POST['age'];
-	$emailaddress= $_POST['emailaddress'];
 	$address= $_POST['address'];
 	$mobilenumber= $_POST['mobilenumber'];
 
-	/* query update */
-	$query = "UPDATE users SET firstname='$firstname', 
-								middlename = '$middlename',
-								lastname = '$lastname',
-								gender = '$gender',
-								birthday = '$birthday',
-								age = '$age',
-								emailaddress = '$emailaddress',
-								address = '$address',
-								mobilenumber = '$mobilenumber',
-								updated_at = now()
-				WHERE username = '$username'";
+        /* query update */
+	$query = "UPDATE users SET name='$name', 
+                                gender = '$gender',
+                                birthday = '$birthday',
+                                age = '$age',
+                                address = '$address',
+                                mobilenumber = '$mobilenumber',
+                                updated_at = now()
+				WHERE emailaddress = '$emailaddress'";
 	mysqli_query($db,$query);
 
 	/* insert the message in session */
-	$_SESSION['message'] = "Successfully Updated!";
+	unset($_SESSION['name']);
+        $_SESSION['name'] = $name;
+        $_SESSION['message'] = "Successfully Updated!";
 
 	/* redirect to profileedit.php */
 	header('location: profileedit.php');
@@ -79,26 +75,20 @@ if(isset($_POST['submit-btn'])){
 <a href="home.php">HOME</a>
 <a href="profile.php">PROFILE</a>
 
-<h2>Hello <?php echo $row['username']; ?>,</h2>
+<h2>Hello <?php echo $row['name']; ?>,</h2>
 
 
 
 <form method="post" action="profileedit.php">
 
-	<label>Username : </label>
-	<?php echo $row['username']; ?>
-	<br/>
-	<label>Firstname : </label>
-	<input type="text" id="firstname" name="firstname" value="<?php echo  $row['firstname'] ?>" />
-	<br/>
-	<label>Middlename : </label>
-	<input type="text" id="middlename" name="middlename" value="<?php echo  $row['middlename'] ?>" />
-	<br/>
-	<label>Lastname : </label>
-	<input type="text" id="lastname" name="lastname" value="<?php echo  $row['lastname'] ?>" />
+	<label>Name : </label>
+        <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>">
 	<br/>
 	<label>Gender : </label>
-	<input type="text" id="gender" name="gender" value="<?php echo  $row['gender'] ?>" />
+        <select id="gender" name="gender">
+            <option value="M" <?php echo ($row['gender']=='M') ? 'selected' : ''; ?>>M</option>
+            <option value="F" <?php echo ($row['gender']=='F') ? 'selected' : ''; ?>>F</option>
+        </select>
 	<br/>
 	<label>Birthday : </label>
 	<input type="text" id="birthday" name="birthday" value="<?php echo  $row['birthday'] ?>" />
@@ -107,7 +97,7 @@ if(isset($_POST['submit-btn'])){
 	<input type="text" id="age" name="age" value="<?php echo  $row['age'] ?>" />
 	<br/>
 	<label>Email Address : </label>
-	<input type="text" id="emailaddress" name="emailaddress" value="<?php echo  $row['emailaddress'] ?>" />
+	<?php echo  $row['emailaddress'] ?>
 	<br/>
 	<label>Address : </label>
 	<input type="text" id="address" name="address" value="<?php echo  $row['address'] ?>" />

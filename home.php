@@ -9,9 +9,6 @@ if(empty($_SESSION['logged_in']) || $_SESSION['logged_in']==0){
 
 include 'config/db.php';
 
-$_SESSION['username'];
-
-
 
 ?>
 
@@ -22,8 +19,11 @@ $_SESSION['username'];
 
 <a href="home.php">HOME</a>
 <a href="profile.php">PROFILE</a>
+<form method="get" action="search.php">
+Search Name: <input type="text" id="search_name" name="search_name" value=""> <button type="submit">Find</button>
+</form>
 
-<h2>Hello <?php echo $_SESSION['username']; ?>,</h2>
+<h1>Hello <?php echo $_SESSION['name']; ?>!</h1>
 
 
 

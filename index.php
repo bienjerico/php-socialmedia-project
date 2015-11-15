@@ -13,33 +13,30 @@ include 'config/db.php';
 
 
 /* user click the submit button */
-if(isset($_POST['submit-btn'])){
+if(isset($_POST['submit-login-btn'])){
 
 	/* get the values */
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$user 	  = $_POST['user'];
-
-	$is_admin = 0;
-	if($user=='admin'){
-		$is_admin = 1;
-	}
-
-
-
+	$emailaddress = $_POST['l-emailaddress'];
+	$password = $_POST['l-password'];
 
 	/* query select if username with password is existing */
-	$query_cnt 	= "SELECT count(*) as cnt FROM users WHERE username = '$username' and password=md5('$password') and is_admin='$is_admin' LIMIT 1";
+	$query_cnt 	= "SELECT count(*) as cnt,name,is_admin,id FROM users WHERE emailaddress = '$emailaddress' and password=md5('$password') LIMIT 1";
 	$result_cnt = mysqli_query($db,$query_cnt);
-	$row_cnt	= mysqli_fetch_assoc($result_cnt);
-	$cnt 		= $row_cnt['cnt'];
+	$row_cnt    = mysqli_fetch_assoc($result_cnt);
+	$cnt        = $row_cnt['cnt'];
+	$name       = $row_cnt['name'];
+	$is_admin   = $row_cnt['is_admin'];
+	$user_id   = $row_cnt['id'];
 
 
 	/* if zero, proceed to saving*/
 	if($cnt>0){
 
 
-		$_SESSION['username'] = $username;
+		$_SESSION['user_id'] = $user_id;
+		$_SESSION['name'] = $name;
+		$_SESSION['emailaddress'] = $emailaddress;
+		$_SESSION['is_admin'] = $is_admin;
 		$_SESSION['logged_in'] = 1;
 
 
@@ -52,7 +49,7 @@ if(isset($_POST['submit-btn'])){
 	}else{
 
 		/* insert the message in session */
-		$_SESSION['message'] = "Please enter valid  username and password!";
+		$_SESSION['message'] = "To Login, Please enter valid  username and password!";
 
 		/* redirect to register.php */
 		header('location: index.php');
@@ -68,6 +65,72 @@ if(isset($_POST['submit-btn'])){
 
 
 
+/* user click the submit register button */
+if(isset($_POST['submit-register-btn'])){
+
+	/* get the values */
+	$name = $_POST['r-name'];
+	$emailaddress = $_POST['r-emailaddress'];
+	$password = $_POST['r-password'];
+	$con_password = $_POST['r-con_password'];
+
+
+	/* query select if username is existing */
+	$query_cnt 	= "SELECT count(*) as cnt FROM users WHERE emailaddress = '$emailaddress' LIMIT 1";
+	$result_cnt = mysqli_query($db,$query_cnt);
+	$row_cnt	= mysqli_fetch_assoc($result_cnt);
+	$cnt 		= $row_cnt['cnt'];
+
+
+	/* if zero, proceed to saving*/
+	if($cnt==0){
+
+
+
+		/* emailaddress, password and confirm passsowrd must not be empty and password must be equal to confirm password*/
+		if(!empty($name) && !empty($emailaddress) && !empty($password) && !empty($con_password) && ($password==$con_password)){
+			
+			/* query insert to users table only emailaddress and password*/
+			$query = "INSERT INTO users (`name`,`emailaddress`,`password`,`created_at`,`updated_at`) VALUES ('$name','$emailaddress',MD5('$password'),now(),now())";
+			mysqli_query($db,$query);
+
+			/* insert the message in session */
+			$_SESSION['message'] = "Successfully Signed Up!";
+
+			/* redirect to index.php */
+			header('location: index.php');
+			exit();
+
+
+		}else{
+
+			/* insert the message in session */
+			$_SESSION['message'] = "To Sign Up, Please enter the valid data!";
+
+			/* redirect to index.php */
+			header('location: index.php');
+			exit();
+
+		}
+
+
+	}else{
+
+		/* insert the message in session */
+		$_SESSION['message'] = "Email Adress is already existing!";
+
+		/* redirect to register.php */
+		header('location: index.php');
+		exit();
+
+	}
+
+	
+
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -76,14 +139,6 @@ if(isset($_POST['submit-btn'])){
 	<title>Login</title>
 </head>
 <body>
-
-
-<?php if(isset($_GET['user']) && $_GET['user']=='admin'){ ?>
-<a href="index.php">Login as Guest</a>
-<?php }else{ ?>
-<a href="index.php?user=admin">Login as Admin</a>
-<?php } ?>
-<br/>
 
 	<?php 
 
@@ -95,15 +150,33 @@ if(isset($_POST['submit-btn'])){
 
 	<form method="post" action="index.php">
 
-		<label>Username</label>
-		<input type="text" id="username" name="username" value=""/>
+		<label>Email</label>
+		<input type="text" id="l-emailaddress" name="l-emailaddress" value=""/>
 		<br/>
 		<label>Password</label>
-		<input type="text" id="password" name="password" value=""/>
+		<input type="text" id="l-password" name="l-password" value=""/>
 		<br/>
-		<input type="hidden" id="user"  name="user" value="<?php echo isset($_GET['user']) ? 'admin' :  ''; ?>"/>
-		<input type="submit" id="submit-btn" name="submit-btn" value="Submit"/>
-		<a href="register.php">Not yet Registered?</a>
+		
+		<input type="submit" id="submit-login-btn" name="submit-login-btn" value="Login"/>
+		
+                <br/>
+                Not yet Registered? Sign Up
+                <br/>
+                
+                <label>Name</label>
+		<input type="text" id="r-name" name="r-name" value=""/>
+		<br/>
+		<label>Email</label>
+		<input type="text" id="r-emailaddress" name="r-emailaddress" value=""/>
+                <br/>
+                <label>Password</label>
+		<input type="password" id="r-password" name="r-password" value=""/>
+		<br/>
+		<label>Confirm Password</label>
+		<input type="password" id="r-con_password" name="r-con_password" value=""/>
+		<br/>
+		<input type="submit" id="submit-register-btn" name="submit-register-btn" value="Regsiter"/>
+                
 
 	</form>
 </body>
@@ -113,5 +186,6 @@ if(isset($_POST['submit-btn'])){
 <?php 
 /* remove the session message data */
 unset($_SESSION['message']); 
+
 ?>
 
