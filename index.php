@@ -154,7 +154,7 @@ if(isset($_POST['submit-register-btn'])){
 		<input type="text" id="l-emailaddress" name="l-emailaddress" value=""/>
 		<br/>
 		<label>Password</label>
-		<input type="text" id="l-password" name="l-password" value=""/>
+		<input type="password" id="l-password" name="l-password" value=""/>
 		<br/>
 		
 		<input type="submit" id="submit-login-btn" name="submit-login-btn" value="Login"/>

@@ -19,6 +19,7 @@ $result_cnt = mysqli_query($db,$query_cnt);
 $row_cnt	= mysqli_fetch_assoc($result_cnt);
 $cnt 		= $row_cnt['cnt'];
 
+$message = "Something went wrong. Please Try Again.";
 if($cnt==0){
 
     $query = "INSERT INTO users_friends (`user_id`,`friend_id`,`requested_at`,`created_at`) VALUES ('$user_id','$search_id',now(),now())";
@@ -26,13 +27,28 @@ if($cnt==0){
     $id = mysqli_insert_id($db);
 
     if(!empty($id) && $id>0){
-        echo "Successfully Added.";
+        $message = "Successfully Added.";
     }else{
-        echo "Something is Wrong.";
+        $message = "Something is Wrong.";
     }
 }else{
-    echo "Already Added.";
+    $message = "Already Added.";
 }
 ?>
 
+<br/>
+<a href="logout.php">Logout</a>
+<br/>
+
+
+<a href="home.php">HOME</a>
+<a href="profile.php">PROFILE</a>
+<a href="friends.php">FRIENDS</a>
+<form method="get" action="search.php">
+Search Name: <input type="text" id="search_name" name="search_name" value="<?php echo $search_name; ?>"> <button type="submit">Find</button>
+</form>
+
+<br/>
+<?php echo $message; ?>
+<br/>
 <a href="search.php?search_name=<?php echo $search_name; ?>"><button>Back to Search</button></a>

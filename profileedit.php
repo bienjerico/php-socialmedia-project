@@ -74,6 +74,10 @@ if(isset($_POST['submit-btn'])){
 
 <a href="home.php">HOME</a>
 <a href="profile.php">PROFILE</a>
+<a href="friends.php">FRIENDS</a>
+<form method="get" action="search.php">
+Search Name: <input type="text" id="search_name" name="search_name" value=""> <button type="submit">Find</button>
+</form>
 
 <h2>Hello <?php echo $row['name']; ?>,</h2>
 
