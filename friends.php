@@ -51,7 +51,7 @@ $result_friends = mysqli_query($db,$query_friends);
 <a href="profile.php">PROFILE</a>
 <a href="friends.php">FRIENDS</a>
 <form method="get" action="search.php">
-Search Name: <input type="text" id="search_name" name="search_name" value="<?php echo $search_name; ?>"> <button type="submit">Find</button>
+Search Name: <input type="text" id="search_name" name="search_name" value=""> <button type="submit">Find</button>
 </form>
 
 
