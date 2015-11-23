@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-=======
 <?php 
 session_start();
 
@@ -21,17 +11,15 @@ include 'config/db.php';
 
 
 $user_id = $_SESSION['user_id'];
-$users_friends_id = strtolower($_GET['users_friends_id']);
-$search_name = strtolower($_GET['search_name']);
+$friend_id = $_GET['friend_id'];
 
 
 
-    $query = "DELETE FROM users_friends WHERE id = '$users_friends_id' ";
-    mysqli_query($db,$query);
 
+	$query = "DELETE FROM users_friends WHERE id = '$friend_id'";
+	mysqli_query($db,$query);
+	$message = "Successfully Unfriend";
 
-    
-        $message = "Successfully Cancelled.";
 
 ?>
 
@@ -50,5 +38,4 @@ Search Name: <input type="text" id="search_name" name="search_name" value="<?php
 <br/>
 <?php echo $message; ?>
 <br/>
-<a href="search.php?search_name=<?php echo $search_name; ?>"><button>Back to Search</button></a>
->>>>>>> 1a229e4230cd2399305a7dbad41c63856bcdd0e5
+<a href="friends.php"><button>Back to Friends</button></a>
