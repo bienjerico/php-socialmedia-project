@@ -9,6 +9,7 @@ if(empty($_SESSION['logged_in']) || $_SESSION['logged_in']==0){
 
 include 'config/db.php';
 
+$user_id = $_SESSION['user_id'];
 $emailaddress = $_SESSION['emailaddress'];
 
 $query  = "SELECT * FROM users WHERE emailaddress='$emailaddress'";
@@ -51,6 +52,44 @@ if(isset($_POST['submit-btn'])){
 }
 
 
+
+ if(isset($_FILES['image'])){
+      $errors= "";
+      $file_name = $_FILES['image']['name'];
+      $file_size =$_FILES['image']['size'];
+      $file_tmp =$_FILES['image']['tmp_name'];
+      $file_type=$_FILES['image']['type'];
+      $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+      
+      $expensions= array("jpeg","jpg","png");
+      
+      if(in_array($file_ext,$expensions)=== false){
+         $errors ="extension not allowed, please choose a JPEG or PNG file.";
+      }
+      
+      $file_name_new = time().$file_name;
+      
+      if(empty($errors)==true){
+         move_uploaded_file($file_tmp,"images/".$file_name_new);/* query update */
+         
+	$query_pic = "UPDATE users SET picture_location = 'images/$file_name_new' WHERE id = $user_id";
+	mysqli_query($db,$query_pic);
+        
+         
+         $_SESSION['message'] = "Successfully Uploaded!";
+         
+      }
+      else{
+         $_SESSION['message'] = $errors;
+      }
+      /* redirect to profileedit.php */
+	header('location: profileedit.php');
+	exit();	
+      
+   }
+   
+   
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -81,7 +120,13 @@ Search Name: <input type="text" id="search_name" name="search_name" value=""> <b
 
 <h2>Hello <?php echo $row['name']; ?>,</h2>
 
+<img src="<?php echo $row['picture_location']; ?>" style="max-height:100px;width:100px;" >
+<form action="profileedit.php" method="POST" enctype="multipart/form-data">
+         <input type="file" name="image" />
+         <input type="submit"/>
+</form>
 
+<br/>
 
 <form method="post" action="profileedit.php">
 
@@ -114,6 +159,8 @@ Search Name: <input type="text" id="search_name" name="search_name" value=""> <b
 	<input type="submit" id="submit-btn" name="submit-btn" value="Submit"/>
 
 </form>
+
+
 
 
 </body>
