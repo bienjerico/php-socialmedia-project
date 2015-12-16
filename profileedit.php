@@ -120,7 +120,9 @@ Search Name: <input type="text" id="search_name" name="search_name" value=""> <b
 
 <h2>Hello <?php echo $row['name']; ?>,</h2>
 
+<?php if(!empty($row['picture_location'])) { ?>
 <img src="<?php echo $row['picture_location']; ?>" style="max-height:100px;width:100px;" >
+<?php } ?>
 <form action="profileedit.php" method="POST" enctype="multipart/form-data">
          <input type="file" name="image" />
          <input type="submit"/>

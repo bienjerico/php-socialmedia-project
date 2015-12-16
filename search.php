@@ -23,18 +23,7 @@ $query  = "SELECT a.id as id, a.name, a.age, a.address, b.user_id, b.status, b.i
 $result = mysqli_query($db,$query);
 
 ?>
-
-<br/>
-<a href="logout.php">Logout</a>
-<br/>
-
-
-<a href="home.php">HOME</a>
-<a href="profile.php">PROFILE</a>
-<a href="friends.php">FRIENDS</a>
-<form method="get" action="search.php">
-Search Name: <input type="text" id="search_name" name="search_name" value="<?php echo $search_name; ?>"> <button type="submit">Find</button>
-</form>
+<?php include('header.php');?>
 
 <?php while($row = mysqli_fetch_assoc($result)){ ?>
 

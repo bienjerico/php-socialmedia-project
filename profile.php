@@ -17,21 +17,13 @@ $row 	= mysqli_fetch_assoc($result);
 
 
 ?>
-
-<br/>
-<a href="logout.php">Logout</a>
-<br/>
-
-
-<a href="home.php">HOME</a>
-<a href="profile.php">PROFILE</a>
-<a href="friends.php">FRIENDS</a>
-<form method="get" action="search.php">
-Search Name: <input type="text" id="search_name" name="search_name" value=""> <button type="submit">Find</button>
-</form>
+<?php include('header.php');?>
 
 <h2>Hello <?php echo $row['name']; ?>,</h2>
-
+<?php if(!empty($row['picture_location'])) { ?>
+<img src="<?php echo $row['picture_location']; ?>" style="max-height:100px;width:100px;" >
+<br/>
+<?php } ?>
 
 
 <label>Name : </label>

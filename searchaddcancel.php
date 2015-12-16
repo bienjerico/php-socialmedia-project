@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-=======
 <?php 
 session_start();
 
@@ -35,20 +25,10 @@ $search_name = strtolower($_GET['search_name']);
 
 ?>
 
-<br/>
-<a href="logout.php">Logout</a>
-<br/>
-
-
-<a href="home.php">HOME</a>
-<a href="profile.php">PROFILE</a>
-<a href="friends.php">FRIENDS</a>
-<form method="get" action="search.php">
-Search Name: <input type="text" id="search_name" name="search_name" value="<?php echo $search_name; ?>"> <button type="submit">Find</button>
-</form>
+<?php include('header.php');?>
 
 <br/>
 <?php echo $message; ?>
 <br/>
 <a href="search.php?search_name=<?php echo $search_name; ?>"><button>Back to Search</button></a>
->>>>>>> 1a229e4230cd2399305a7dbad41c63856bcdd0e5
+
