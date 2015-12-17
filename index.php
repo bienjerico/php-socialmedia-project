@@ -172,8 +172,9 @@ if(isset($_POST['submit-register-btn'])){
                 <label for="l-password" class="sr-only">Password</label>
                 <input type="password" id="l-password" name="l-password" class="form-control" placeholder="Password" required="">
                 <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit-login-btn" name="submit-login-btn">Sign in</button>
-        
+        </form>
                 <br/>
+        <form method="post" action="index.php"  class="form-signin">
                 <h2 class="form-signup-heading">Not yet Registered? Sign Up</h2>
                 <label for="r-name" class="sr-only">Name</label>
 		<input type="text" id="r-name" name="r-name" value="" class="form-control" placeholder="Name"/>
@@ -184,9 +185,9 @@ if(isset($_POST['submit-register-btn'])){
 		<label for="r-con_password" class="sr-only">Confirm Password</label>
 		<input type="password" id="r-con_password" name="r-con_password" value="" class="form-control" placeholder="Confirm Password"/>
 		<input class="btn btn-lg btn-primary btn-block" type="submit" id="submit-register-btn" name="submit-register-btn" value="Sign Up"/>
-                
+        </form>
 
-	</form>
+	
         </div>
 </body>
 </html>
