@@ -35,9 +35,9 @@ $result = mysqli_query($db,$query);
     <br/>
     <?php if($row['status']==0){ ?>
         <?php if(empty($row['user_id'])){ ?>
-        <a href="searchadd.php?search_id=<?php echo $row['id']; ?>&search_name=<?php echo $search_name; ?>"><button id="add-friend" name="add-friend">Add as Friend</button></a>
+        <a href="searchadd.php?search_id=<?php echo $row['id']; ?>&search_name=<?php echo $search_name; ?>"><button id="add-friend" name="add-friend" class="btn btn-success ">Add as Friend</button></a>
         <?php }else{ ?>
-        <a href="searchaddcancel.php?users_friends_id=<?php echo $row['users_friends_id']; ?>&search_name=<?php echo $search_name; ?>"><button id="cancel-friend" name="cancel-friend">Cancel Friend Request</button></a>
+        <a href="searchaddcancel.php?users_friends_id=<?php echo $row['users_friends_id']; ?>&search_name=<?php echo $search_name; ?>"><button id="cancel-friend" name="cancel-friend" class="btn btn-danger ">Cancel Friend Request</button></a>
         <?php } ?>
         <?php }else{
             echo "Friend";

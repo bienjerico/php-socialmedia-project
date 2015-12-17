@@ -40,6 +40,6 @@ if($cnt==0){
 <br/>
 <?php echo $message; ?>
 <br/>
-<a href="search.php?search_name=<?php echo $search_name; ?>"><button>Back to Search</button></a>
+<a href="search.php?search_name=<?php echo $search_name; ?>"><button class="btn btn-default">Back to Search</button></a>
 
 <?php include('footer.php');?>

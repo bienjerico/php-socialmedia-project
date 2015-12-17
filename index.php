@@ -139,12 +139,13 @@ if(isset($_POST['submit-register-btn'])){
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/full.css">
+
 <!-- Optional theme -->
 <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="assets/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="assets/css/full.css">
 <style>
     .form-signin {
     max-width: 330px;
@@ -176,16 +177,12 @@ if(isset($_POST['submit-register-btn'])){
                 <h2 class="form-signup-heading">Not yet Registered? Sign Up</h2>
                 <label for="r-name" class="sr-only">Name</label>
 		<input type="text" id="r-name" name="r-name" value="" class="form-control" placeholder="Name"/>
-		<br/>
 		<label for="r-emailaddress" class="sr-only">Email address</label>
 		<input type="text" id="r-emailaddress" name="r-emailaddress" value="" class="form-control" placeholder="Email address"/>
-                <br/>
                 <label for="r-password" class="sr-only">Password</label>
 		<input type="password" id="r-password" name="r-password" value="" class="form-control" placeholder="Password"/>
-		<br/>
 		<label for="r-con_password" class="sr-only">Confirm Password</label>
 		<input type="password" id="r-con_password" name="r-con_password" value="" class="form-control" placeholder="Confirm Password"/>
-		<br/>
 		<input class="btn btn-lg btn-primary btn-block" type="submit" id="submit-register-btn" name="submit-register-btn" value="Sign Up"/>
                 
 

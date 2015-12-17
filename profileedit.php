@@ -108,8 +108,8 @@ if(isset($_POST['submit-btn'])){
 <img src="<?php echo $row['picture_location']; ?>" style="max-height:100px;width:100px;" >
 <?php } ?>
 <form action="profileedit.php" method="POST" enctype="multipart/form-data">
-         <input type="file" name="image" />
-         <input type="submit"/>
+    <input type="file" name="image"  class="form-control" style="width: 300px;"/>
+         <input type="submit" class="btn btn-default btn-lg"/>
 </form>
 
 <br/>
@@ -118,31 +118,20 @@ if(isset($_POST['submit-btn'])){
 
 	<label>Name : </label>
         <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>" class="form-control">
-	<br/>
 	<label>Gender : </label>
         <select id="gender" name="gender"  class="form-control">
             <option value="M" <?php echo ($row['gender']=='M') ? 'selected' : ''; ?>>M</option>
             <option value="F" <?php echo ($row['gender']=='F') ? 'selected' : ''; ?>>F</option>
         </select>
-	<br/>
 	<label>Birthday : </label>
 	<input type="date" id="birthday" name="birthday" value="<?php echo  $row['birthday'] ?>"  class="form-control"/>
-	<br/>
 	<label>Age : </label>
 	<input type="text" id="age" name="age" value="<?php echo  $row['age'] ?>" class="form-control" />
-	<br/>
-	<label>Email Address : </label>
-	<?php echo  $row['emailaddress'] ?>
-	<br/>
 	<label>Address : </label>
 	<input type="text" id="address" name="address" value="<?php echo  $row['address'] ?>"  class="form-control"/>
-	<br/>
 	<label>Mobile Number : </label>
 	<input type="text" id="mobilenumber" name="mobilenumber" value="<?php echo  $row['mobilenumber'] ?>"  class="form-control" />
-
-	<br/>
-	<br/>
-	<input type="submit" id="submit-btn" name="submit-btn" value="Submit"/>
+        <center><input type="submit" id="submit-btn" name="submit-btn" value="Submit"/></center>
 
 </form>
 

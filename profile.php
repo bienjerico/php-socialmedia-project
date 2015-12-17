@@ -49,6 +49,6 @@ $row 	= mysqli_fetch_assoc($result);
 
 <br/>
 <br/>
-<a href="profileedit.php">Edit</a>
+<a href="profileedit.php"><button class="btn btn-success btn-lg">Edit</button></a>
 
 <?php include('footer.php');?>
