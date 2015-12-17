@@ -36,8 +36,10 @@ $result_friends = mysqli_query($db,$query_friends);
 	
 	<?php echo $row['name']; ?>
         <?php if($row['message_count']>0){ echo '('.$row['message_count'].')'; } ?>
-	<a href="messagefriend.php?friend_id=<?php echo $row['friend_id']; ?>"><button>Message</button></a>
+	<a href="messagefriend.php?friend_id=<?php echo $row['friend_id']; ?>"><button  class="btn btn-success btn-sm">Message</button></a>
+	<br/>
 	<br/>
 <?php } ?>
 
-        
+       
+<?php include('footer.php');?>

@@ -18,8 +18,6 @@ $search_name = strtolower($_GET['search_name']);
 
     $query = "DELETE FROM users_friends WHERE id = '$users_friends_id' ";
     mysqli_query($db,$query);
-
-
     
         $message = "Successfully Cancelled.";
 
@@ -32,3 +30,4 @@ $search_name = strtolower($_GET['search_name']);
 <br/>
 <a href="search.php?search_name=<?php echo $search_name; ?>"><button>Back to Search</button></a>
 
+<?php include('footer.php');?>

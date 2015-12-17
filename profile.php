@@ -50,3 +50,5 @@ $row 	= mysqli_fetch_assoc($result);
 <br/>
 <br/>
 <a href="profileedit.php">Edit</a>
+
+<?php include('footer.php');?>

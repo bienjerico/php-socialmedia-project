@@ -91,33 +91,17 @@ if(isset($_POST['submit-btn'])){
    
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit Profile</title>
-</head>
-<body>
-		
-	<?php 
 
-		/* if session message is not empty */
-		if(!empty($_SESSION['message'])){ 
-			echo $_SESSION['message']; 
-		} 
-	?>
+<?php include('header.php');?>
 
-<br/>
-<a href="logout.php">Logout</a>
-<br/>
+<?php 
 
-
-<a href="home.php">HOME</a>
-<a href="profile.php">PROFILE</a>
-<a href="friends.php">FRIENDS</a>
-<form method="get" action="search.php">
-Search Name: <input type="text" id="search_name" name="search_name" value=""> <button type="submit">Find</button>
-</form>
-
+        /* if session message is not empty */
+        if(!empty($_SESSION['message'])){ 
+                echo $_SESSION['message']; 
+        } 
+?>
+    
 <h2>Hello <?php echo $row['name']; ?>,</h2>
 
 <?php if(!empty($row['picture_location'])) { ?>
@@ -133,28 +117,28 @@ Search Name: <input type="text" id="search_name" name="search_name" value=""> <b
 <form method="post" action="profileedit.php">
 
 	<label>Name : </label>
-        <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>">
+        <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>" class="form-control">
 	<br/>
 	<label>Gender : </label>
-        <select id="gender" name="gender">
+        <select id="gender" name="gender"  class="form-control">
             <option value="M" <?php echo ($row['gender']=='M') ? 'selected' : ''; ?>>M</option>
             <option value="F" <?php echo ($row['gender']=='F') ? 'selected' : ''; ?>>F</option>
         </select>
 	<br/>
 	<label>Birthday : </label>
-	<input type="text" id="birthday" name="birthday" value="<?php echo  $row['birthday'] ?>" />
+	<input type="date" id="birthday" name="birthday" value="<?php echo  $row['birthday'] ?>"  class="form-control"/>
 	<br/>
 	<label>Age : </label>
-	<input type="text" id="age" name="age" value="<?php echo  $row['age'] ?>" />
+	<input type="text" id="age" name="age" value="<?php echo  $row['age'] ?>" class="form-control" />
 	<br/>
 	<label>Email Address : </label>
 	<?php echo  $row['emailaddress'] ?>
 	<br/>
 	<label>Address : </label>
-	<input type="text" id="address" name="address" value="<?php echo  $row['address'] ?>" />
+	<input type="text" id="address" name="address" value="<?php echo  $row['address'] ?>"  class="form-control"/>
 	<br/>
 	<label>Mobile Number : </label>
-	<input type="text" id="mobilenumber" name="mobilenumber" value="<?php echo  $row['mobilenumber'] ?>" />
+	<input type="text" id="mobilenumber" name="mobilenumber" value="<?php echo  $row['mobilenumber'] ?>"  class="form-control" />
 
 	<br/>
 	<br/>
@@ -165,8 +149,7 @@ Search Name: <input type="text" id="search_name" name="search_name" value=""> <b
 
 
 
-</body>
-</html>
+<?php include('footer.php');?>
 
 <?php 
 /* remove the session message data */

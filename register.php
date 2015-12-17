@@ -80,12 +80,22 @@ if(isset($_POST['submit-btn'])){
 
 
 ?>
+
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Register</title>
-</head>
+<html lang="en">
+<title>PHP Project</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="assets/js/bootstrap.min.js"></script>
+
 <body>
+    <div class="container">
 
 	<?php 
 
@@ -110,7 +120,7 @@ if(isset($_POST['submit-btn'])){
 		<a href="index.php">Back to Login</a>
 
 	</form>
-		
+    </div>
 </body>
 </html>
 

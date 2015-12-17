@@ -134,11 +134,26 @@ if(isset($_POST['submit-register-btn'])){
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-</head>
-<body>
+<html lang="en">
+<title>PHP Project</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/full.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="assets/js/bootstrap.min.js"></script>
+<style>
+    .form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+</style>
+<body >
+    <div class="container">
 
 	<?php 
 
@@ -148,40 +163,36 @@ if(isset($_POST['submit-register-btn'])){
 		} 
 	?>
 
-	<form method="post" action="index.php">
+	<form method="post" action="index.php"  class="form-signin">
 
-		<label>Email</label>
-		<input type="text" id="l-emailaddress" name="l-emailaddress" value=""/>
-		<br/>
-		<label>Password</label>
-		<input type="password" id="l-password" name="l-password" value=""/>
-		<br/>
-		
-		<input type="submit" id="submit-login-btn" name="submit-login-btn" value="Login"/>
-		
+		<h2 class="form-signin-heading">Please sign in</h2>
+                <label for="l-emailaddress" class="sr-only">Email address</label>
+                <input type="email" id="l-emailaddress" name="l-emailaddress" class="form-control" placeholder="Email address" required="" autofocus="">
+                <label for="l-password" class="sr-only">Password</label>
+                <input type="password" id="l-password" name="l-password" class="form-control" placeholder="Password" required="">
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit-login-btn" name="submit-login-btn">Sign in</button>
+        
                 <br/>
-                Not yet Registered? Sign Up
+                <h2 class="form-signup-heading">Not yet Registered? Sign Up</h2>
+                <label for="r-name" class="sr-only">Name</label>
+		<input type="text" id="r-name" name="r-name" value="" class="form-control" placeholder="Name"/>
+		<br/>
+		<label for="r-emailaddress" class="sr-only">Email address</label>
+		<input type="text" id="r-emailaddress" name="r-emailaddress" value="" class="form-control" placeholder="Email address"/>
                 <br/>
-                
-                <label>Name</label>
-		<input type="text" id="r-name" name="r-name" value=""/>
+                <label for="r-password" class="sr-only">Password</label>
+		<input type="password" id="r-password" name="r-password" value="" class="form-control" placeholder="Password"/>
 		<br/>
-		<label>Email</label>
-		<input type="text" id="r-emailaddress" name="r-emailaddress" value=""/>
-                <br/>
-                <label>Password</label>
-		<input type="password" id="r-password" name="r-password" value=""/>
+		<label for="r-con_password" class="sr-only">Confirm Password</label>
+		<input type="password" id="r-con_password" name="r-con_password" value="" class="form-control" placeholder="Confirm Password"/>
 		<br/>
-		<label>Confirm Password</label>
-		<input type="password" id="r-con_password" name="r-con_password" value=""/>
-		<br/>
-		<input type="submit" id="submit-register-btn" name="submit-register-btn" value="Regsiter"/>
+		<input class="btn btn-lg btn-primary btn-block" type="submit" id="submit-register-btn" name="submit-register-btn" value="Sign Up"/>
                 
 
 	</form>
+        </div>
 </body>
 </html>
-
 
 <?php 
 /* remove the session message data */

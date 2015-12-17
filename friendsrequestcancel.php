@@ -29,3 +29,6 @@ $request_id = $_GET['request_id'];
 <?php echo $message; ?>
 <br/>
 <a href="friends.php"><button>Back to Friends</button></a>
+
+
+<?php include('footer.php');?>

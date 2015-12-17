@@ -41,3 +41,5 @@ if($cnt==0){
 <?php echo $message; ?>
 <br/>
 <a href="search.php?search_name=<?php echo $search_name; ?>"><button>Back to Search</button></a>
+
+<?php include('footer.php');?>

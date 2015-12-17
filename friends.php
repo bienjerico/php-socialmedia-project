@@ -49,7 +49,7 @@ $result_friends = mysqli_query($db,$query_friends);
 <?php while($row = mysqli_fetch_assoc($result_request)){ ?>
 	
 	<?php echo $row['name']; ?> 
-	<a href="friendsrequestcancel.php?request_id=<?php echo $row['id']; ?>"><button>Cancel Pending Request</button></a>
+	<a href="friendsrequestcancel.php?request_id=<?php echo $row['id']; ?>"><button class="btn btn-danger btn-sm">Cancel Pending Request</button></a>
 	<br/>
 <?php } ?>
 
@@ -61,8 +61,9 @@ $result_friends = mysqli_query($db,$query_friends);
 <?php while($row = mysqli_fetch_assoc($result_pending)){ ?>
 	
 	<?php echo $row['name']; ?> 
-	<a href="friendspendingaction.php?pending_id=<?php echo $row['id']; ?>&action=accept"><button>Accept</button></a>
-	<a href="friendspendingaction.php?pending_id=<?php echo $row['id']; ?>&action=reject"><button>Reject</button></a>
+	<a href="friendspendingaction.php?pending_id=<?php echo $row['id']; ?>&action=accept"><button class="btn btn-success btn-sm">Accept</button></a>
+	<a href="friendspendingaction.php?pending_id=<?php echo $row['id']; ?>&action=reject"><button class="btn btn-danger btn-sm">Reject</button></a>
+	<br/>
 	<br/>
 <?php } ?>
 
@@ -71,6 +72,10 @@ $result_friends = mysqli_query($db,$query_friends);
 <?php while($row = mysqli_fetch_assoc($result_friends)){ ?>
 	
 	<?php echo $row['name']; ?>
-	<a href="friendsunfriend.php?friend_id=<?php echo $row['id']; ?>"><button>Unfriend</button></a>
+	<a href="friendsunfriend.php?friend_id=<?php echo $row['id']; ?>"><button class="btn btn-warning btn-sm">Unfriend</button></a>
+	<br/>
 	<br/>
 <?php } ?>
+
+        
+<?php include('footer.php');?>

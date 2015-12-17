@@ -71,7 +71,13 @@ $result_msg = mysqli_query($db,$query_msg);
 
 
 <form action="<?php echo $_SERVER['PHP_SELF'].'?friend_id='.$friend_id; ?>" method="POST">
-Send Message to <?php echo $row['name']; ?>
-<textarea id="message_txt" name="message_txt"></textarea>
-<button type="submit" id="send-btn" name="send-btn">Send</button>
+<br/>
+<center><b><h3>Send Message to <?php echo $row['name']; ?></h3></b></center>
+<br/>
+<textarea id="message_txt" name="message_txt" class="form-control"></textarea>
+<br/>
+<center><button type="submit" id="send-btn" name="send-btn" class="btn btn-success btn-lg">Send</button></center>
 </form>  
+
+
+<?php include('footer.php');?>

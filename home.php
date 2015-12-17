@@ -16,5 +16,5 @@ include 'config/db.php';
 
 <h1>Hello <?php echo $_SESSION['name']; ?>!</h1>
 
-
+<?php include('footer.php');?>
 

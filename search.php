@@ -46,3 +46,6 @@ $result = mysqli_query($db,$query);
 
     
 <?php } ?>
+
+    
+<?php include('footer.php');?>
